@@ -1,8 +1,10 @@
 class CustomAPIError extends Error {
   constructor(message, statusCode) {
-    super(message)
-    this.statusCode = statusCode
+    super(message);
+    this.statusCode = statusCode;
+
+    Error.captureStackTrace(this, this.constructor);
   }
 }
 
-module.exports = CustomAPIError
+module.exports = CustomAPIError;

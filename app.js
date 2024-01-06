@@ -2,14 +2,16 @@ require('dotenv').config();
 require('express-async-errors');
 
 const express = require('express');
+const authRouter = require('./routes/main');
 const app = express();
 
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
 // middleware
-app.use(express.static('./public'));
 app.use(express.json());
+app.use('/api/v1/auth', authRouter);
+app.use(express.static('./public'));
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
